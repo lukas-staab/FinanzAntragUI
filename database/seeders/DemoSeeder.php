@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 
 class DemoSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $startDate = now()->dayOfYear(1);
         \DB::table('haushaltsplan')->insert([
