@@ -3,6 +3,8 @@
 namespace App\Models\Legacy;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Legacy\LegacyBudgetItem
@@ -42,18 +44,12 @@ class LegacyBudgetItem extends Model
      */
     protected $fillable = ['hhpgruppen_id', 'titel_name', 'titel_nr', 'value'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function bookings()
+    public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class, 'titel_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function budgetGroup()
+    public function budgetGroup(): BelongsTo
     {
         return $this->belongsTo(LegacyBudgetGroup::class, 'hhpgruppen_id');
     }
